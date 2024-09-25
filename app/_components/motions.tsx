@@ -117,17 +117,19 @@ export function TextEffect({
   preset,
 }: TextEffectProps) {
   const words = children.split(/(\S+)/);
-  const MotionTag = motion[as as keyof typeof motion];
+  const MotionTag: React.ElementType = motion[as as keyof typeof motion];
+  
   const selectedVariants = preset
     ? presetVariants[preset]
     : { container: defaultContainerVariants, item: defaultItemVariants };
+
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
   return (
     <MotionTag
-      initial='hidden'
-      animate='visible'
+      initial="hidden"
+      animate="visible"
       aria-label={children}
       variants={containerVariants}
       className={className}

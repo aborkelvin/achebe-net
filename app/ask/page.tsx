@@ -211,7 +211,7 @@ export default function Ask() {
                                 id="question"
                                 placeholder="ASK ACHEBE.NET ANYTHING"
                                 className="border-[1px] border-[#FFF1FA99] text-brand-white w-full outline-none active:outline-none rounded 
-                                py-4 xl:py-6 px-3 bg-inherit text-base lg:text-lg"
+                                py-4 xl:py-6 px-3 pr-20 lg:pr-36 bg-inherit text-base lg:text-lg"
                                 value={userMessage}
                                 onChange={(e) => setUserMessage(e.target.value)}
                                 // Send the user's message to the Gaianet API when the user presses the Enter key

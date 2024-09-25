@@ -16,7 +16,12 @@
   }
 }
 
-body {
+/* @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap'); */
+
+/* Optionally, you can keep Fjalla One as well */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -25,3 +30,43 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+ */
+
+
+ input[type="checkbox"],
+ input[type="radio"] {
+   appearance: none;
+   -webkit-appearance: none;
+ }
+
+
+ /* Additional styles to override focus and active states for checkbox */
+ input[type="checkbox"]:focus,
+ input[type="radio"]:focus {
+   outline: none;
+   box-shadow: none;
+   border-color: #FFF1FA;
+ }
+
+ input[type="checkbox"]:active,
+ input[type="radio"]:active {
+   outline: none;
+   box-shadow: none;
+   border-color: #FFF1FA;
+   background-color: #FFF1FA;
+ }
+
+ /* Specific styles to ensure the desired appearance when checked */
+ input[type="checkbox"]:checked:focus,
+ input[type="radio"]:checked:focus {
+   outline: none;
+   border-color: #FFF1FA;
+   background-color: #FFF1FA;
+ }
+
+ input[type="checkbox"]:checked:active,
+ input[type="radio"]:checked:active {
+   outline: none;
+   border-color: #FFF1FA;
+   background-color: #FFF1FA;
+ }

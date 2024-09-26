@@ -7,6 +7,7 @@ import Header from '../_components/header/header'
 import PrimaryButton from '@/app/_components/PrimaryButton/PrimaryButton'
 import Footer from '../_components/footer'
 import Sidebar from '../_components/sidebar';
+import { useRouter } from 'next/navigation';
 
 // TODO: FONT sizes and families are not yet implemented
 // TODO: Add the background vectors to the hero section with the appropriate padding
@@ -15,6 +16,7 @@ import Sidebar from '../_components/sidebar';
 export default function About() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+    const router = useRouter();
     
     return (
         <div className="flex">
@@ -65,6 +67,7 @@ export default function About() {
                                 <PrimaryButton
                                     name='ASK ACHEBE.NET'
                                     className='px-6 py-4 font-bold'
+                                    onClick={()=> router.push('/ask')}
                                 />
                             </div>
                             {/* TODO: Complete the arrangement of this image and the background vectors here later in the day */}
@@ -102,8 +105,7 @@ export default function About() {
                         </div>
                     </div>
                 </section>
-                {/* ABOUT CHINUA ACHEBE SECTION */}
-                {/* OPEN SOURCE LIBRARY SECTION */}
+                
                 <section className='py-12 lg:py-[100px] px-4 md:px-7 lg:px-12 xl:px-[100px] bg-[#120F11] bg-[url(/images/image3.png)] bg-no-repeat bg-cover bg-center min-h-screen relative' >
                     <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                     <div className="relative">

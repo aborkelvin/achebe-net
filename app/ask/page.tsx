@@ -7,6 +7,7 @@ import { Oxanium } from "next/font/google";
 const oxanium = Oxanium({ subsets: ['latin'],weight: "400" });
 import { TextEffect } from "../_components/motions";
 import Loadingspinner from "../_components/loadingSpinner";
+import { useRouter } from "next/navigation";
 
 export default function Ask() {
 
@@ -17,6 +18,7 @@ export default function Ask() {
     const [userQuestion, setUserQuestion] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const sendMessageToGaianet = async (userMessage: string) => {
         setLoading(true);
@@ -126,8 +128,15 @@ export default function Ask() {
                 style={{ borderWidth: "0.5px" }}
             >
                 <PrimaryButton
-                    className="px-[43.5px] py-4 block mb-[60px]"
-                    name="ASK ANYTHING"                    
+                    className="px-[43.5px] py-4 hidden lg:block mb-[60px]"
+                    name="ASK ANYTHING"     
+                    onClick={() => router.push("/ask")}
+                />
+                <img
+                    src="/images/achebe3.svg"
+                    alt="logo"
+                    className="cursor-pointer w-[200] h-12 mb-[60px] lg:hidden"
+                    onClick={() => router.push("/")}
                 />
                 <h1 className="mb-[42px] text-brand-dark text-2xl xl:text-[28px] font-medium" >
                     SEARCH HISTORY
@@ -135,11 +144,16 @@ export default function Ask() {
                 <p className="text-lg xl:text-2xl" >
                     No recents
                 </p>
+                <PrimaryButton
+                    className="px-[43.5px] py-4 block lg:hidden mt-[60px]"
+                    name="ASK ANYTHING"     
+                    onClick={() => router.push("/ask")}
+                />
 
-                <button className="flex gap-2 items-center absolute bottom-[50px] outline-none" >
+                {/* <button className="flex gap-2 items-center absolute bottom-[50px] outline-none" >
                     <span className="text-brand-dark text-xl xl:text-[28px] font-medium" >LOGOUT</span>
                     <img src="/images/logout.svg" alt="logout" className="w-6 h-6" />
-                </button>
+                </button> */}
             </aside>
             
             <section
@@ -149,16 +163,24 @@ export default function Ask() {
                 <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                 <div className="relative h-full w-full ">                        
                     <header className='p-4 py-6 lg:p-5 xl:p-6 flex gap-10 items-center justify-between' >
-                        <h1 className='text-2xl lg:text-5xl xl:text-[52px] text-transparent bg-clip-text'
-                                style={{
-                                    backgroundImage: 'linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)',
-                                    backgroundSize: '100%',
-                                    backgroundClip: 'text',
-                                    WebkitBackgroundClip: 'text'
-                                }}
+                        {/* <h1
+                            className='text-2xl lg:text-5xl xl:text-[52px] text-transparent bg-clip-text'
+                            style={{
+                                backgroundImage: 'linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)',
+                                backgroundSize: '100%',
+                                backgroundClip: 'text',
+                                WebkitBackgroundClip: 'text'
+                            }}
+                            onClick={() => router.push('/')}
                         >
                             achebe.net
-                        </h1>          
+                        </h1>  */}         
+                        <img
+                            src="/images/achebe2.svg"
+                            alt=""
+                            className="cursor-pointer w-[125px] h-[30px] lg:w-[275px] lg:h-[65px]"
+                            onClick={() => router.push("/")}
+                        />
                         <div className="flex gap-4 items-center ">
                             <img
                                 src="/images/menu.svg"
@@ -178,7 +200,7 @@ export default function Ask() {
                     <div className="py-6 p-4 lg:p-6 relative w-full" >
                         {
                             response === "" ?
-                            <h3 className="leading-[70px] 2xl:leading-[120px] text-brand-white font-medium text-5xl 2xl:text-8xl max-w-[80%]" >
+                            <h3 className="leading-[70px] 2xl:leading-[120px] text-brand-white font-medium text-5xl 2xl:text-8xl lg:max-w-[80%]" >
                                 HOW CAN <br className="hidden lg:block" />
                                 <span className="text-transparent bg-clip-text"
                                     style={{
@@ -220,7 +242,7 @@ export default function Ask() {
                                 
                             />
                             
-                            <img
+                           {/*  <img
                                 src="/images/image.svg"
                                 alt=""
                                 className="absolute top-1/2 right-16 lg:right-28  transform -translate-y-1/2 w-4 lg:w-6 h-4 lg:h-6 cursor-pointer"
@@ -229,7 +251,7 @@ export default function Ask() {
                                 src="/images/mic.svg"
                                 alt=""
                                 className="absolute top-1/2 right-10 lg:right-[70px] transform -translate-y-1/2 w-4 lg:w-6 h-4 lg:h-6 cursor-pointer "
-                            />       
+                            />      */}  
                             <img
                                 src="/images/upload.png"
                                 alt=""

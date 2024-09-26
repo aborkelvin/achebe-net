@@ -8,6 +8,7 @@ import PrimaryButton from '../_components/PrimaryButton/PrimaryButton'
 import Footer from './_components/footer'
 import Sidebar from './_components/sidebar'
 import { Oxanium } from 'next/font/google';
+import { useRouter } from 'next/navigation';
 const oxanium = Oxanium({subsets:["latin-ext"]})
 
 
@@ -18,6 +19,7 @@ const oxanium = Oxanium({subsets:["latin-ext"]})
 export default function Home() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+    const router = useRouter();
 
     return (
         <div className={`flex`}>
@@ -31,7 +33,7 @@ export default function Home() {
                 onClick={() => isSidebarOpen && setIsSidebarOpen(false)}
             >
                 {/* HERO SECTION */}
-                <section className="bg-[#120F11] bg-hero-image bg-no-repeat bg-cover bg-center min-h-screen relative overflow-hidden">
+                <section className="bg-[#120F11] bg-[url(/images/image2.png)] bg-no-repeat bg-cover bg-center min-h-screen relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                     <div className="relative z-10 h-full">
                         <Header toggleSidebar = {toggleSidebar} />
@@ -57,6 +59,7 @@ export default function Home() {
                                 <PrimaryButton
                                     name='ASK ACHEBE.NET'
                                     className='px-6 py-4 font-bold'
+                                    onClick={()=> router.push('/ask')}
                                 />
                             </div>
                             {/* TODO: Complete the arrangement of this image and the background vectors here later in the day */}
@@ -95,7 +98,7 @@ export default function Home() {
                     </div>
                 </section>
                 {/* ABOUT CHINUA ACHEBE SECTION */}
-                <section className='py-12 lg:py-[100px] bg-[#120F11] bg-[url(/images/image3.png)] bg-no-repeat bg-cover bg-center min-h-[185vh] lg:min-h-screen relative' >
+                <section className='py-12 lg:py-[100px] bg-[#120F11] bg-[url(/images/image3.png)] bg-no-repeat bg-cover bg-center min-h-[100vh] lg:min-h-screen relative' >
                     <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                     <div className="relative px-4">
                         <div className='mb-8 lg:mb-10 font-fjalla ' >
@@ -165,7 +168,8 @@ export default function Home() {
                         </div>
                         <div className='w-full md:w-[80%] lg:w-[75%] max-w-[1050px] min-h-[430px] text-brand-white mx-auto relative flex flex-col lg:flex-row gap-8 lg:gap-10' >
                             <div className='relative overflow-hidden lg:w-[57%] min-h-[280px] border-2 lg:border-[4px] border-brand-white rounded-2xl py-3.5 pb-10  lg:py-7 pl-3.5 lg:pl-7 ' >
-                                <h1 className='mb-3 lg:mb-3.5 text-3xl xl:text-[44px] font-bold tracking-[-1px] lg:leading-[53px] text-transparent bg-clip-text font-fjalla'
+                                <h1 className="mb-3 lg:mb-3.5 text-3xl xl:text-[44px] font-bold tracking-[-1px] lg:leading-[53px] text-transparent bg-clip-text font-fjalla
+                                            relative z-10"
                                     style={{
                                         backgroundImage: "linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)",
                                         backgroundSize: '100%',
@@ -175,12 +179,12 @@ export default function Home() {
                                 >
                                     COMMUNITY <br /> GOVERNANCE
                                 </h1>
-                                <p className='mb-7 lg:mb-5 z-10 text-xs lg:text-base'>
+                                <p className='mb-7 lg:mb-5 z-10 text-xs lg:text-base relative'>
                                     Indigenous communities can use their <br />voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                 </p>
                                 <PrimaryButton
                                     name="COMING SOON"
-                                    className='px-9 lg:px-12 py-3 lg:py-4 font-bold'
+                                    className='px-9 lg:px-12 py-3 lg:py-4 font-bold z-10 relative'
                                 />
                                 <img
                                     src={'/images/image13.png'}
@@ -192,7 +196,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='relative overflow-hidden lg:w-[43%] min-h-[350px] border-2 lg:border-[4px] border-brand-white rounded-2xl py-3.5 pb-10  lg:py-7 pl-3.5 lg:pl-7 ' >
-                                <h1 className='mb-3 lg:mb-3.5 text-3xl xl:text-[44px] font-bold tracking-[-1px] lg:leading-[53px] text-transparent bg-clip-text font-fjalla'
+                                <h1 className='mb-3 lg:mb-3.5 text-3xl xl:text-[44px] font-bold tracking-[-1px] lg:leading-[53px] text-transparent bg-clip-text font-fjalla z-10 relative'
                                     style={{
                                         backgroundImage: "linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)",
                                         backgroundSize: '100%',
@@ -202,12 +206,12 @@ export default function Home() {
                                 >
                                     OPEN SOURCE <br /> CONTRIBUTION
                                 </h1>
-                                <p className='mb-7 lg:mb-5 z-10 text-xs lg:text-base'>
+                                <p className='mb-7 lg:mb-5 z-10 text-xs lg:text-base relative'>
                                     Become an advocate to ensure that these <br /> cultural stories are preserved in a way that <br /> resists centralization.
                                 </p>
                                 <PrimaryButton
-                                    name="CONTRIBUTE"
-                                    className='px-9 lg:px-12 py-3 lg:py-4 font-bold'
+                                    name="COMING SOON"
+                                    className='px-9 lg:px-12 py-3 lg:py-4 font-bold z-10 relative '
                                 />
                                 <img
                                     src={'/images/image12.png'}
@@ -222,7 +226,7 @@ export default function Home() {
                     </div>
                 </section>
                 {/* OPEN SOURCE LIBRARY SECTION */}
-                <section className='py-12 lg:py-[100px] px-4 md:px-7 lg:px-12 xl:px-[100px] bg-[#120F11] bg-[url(/images/image2.png)] bg-no-repeat bg-cover bg-center min-h-screen relative' >
+                <section className='py-12 lg:py-[100px] px-4 md:px-7 lg:px-12 xl:px-[100px] bg-[#120F11] bg-[url(/images/image7.png)] bg-no-repeat bg-cover bg-center min-h-screen relative' >
                     <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                     <div className="relative">
                         <div className='mb-14' >
@@ -274,7 +278,7 @@ export default function Home() {
                                     Indigenous communities can use their <br /> voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                 </p>
                                 <PrimaryButton
-                                    name='CONTRIBUTE'
+                                    name='COMING SOON'
                                     className='px-11 lg:px-[53px] py-3 lg:py-4 font-bold'
                                 />
                             </div>
@@ -303,7 +307,7 @@ export default function Home() {
                                     Indigenous communities can use their <br /> voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                 </p>
                                 <PrimaryButton
-                                    name='CONTRIBUTE'
+                                    name='COMING SOON'
                                     className='px-11 lg:px-[53px] py-3 lg:py-4 font-bold'
                                 />
                             </div>
@@ -325,7 +329,7 @@ export default function Home() {
                                     Indigenous communities can use their <br /> voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                 </p>
                                 <PrimaryButton
-                                    name='CONTRIBUTE'
+                                    name='COMING SOON'
                                     className='px-11 lg:px-[53px] py-3 lg:py-4 font-bold'
                                 />
                             </div>

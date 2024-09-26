@@ -16,13 +16,19 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen, toggleSidebar
             transition-transform duration-300 ease-in-out lg:hidden 
             ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} `}
         >
-            <h1 className="font-bold text-4xl mb-[50px]" >
+            {/* <h1 className="font-bold text-4xl mb-[50px]" >
                 achebe.net
-            </h1>
+            </h1> */}
+            <img
+                src="/images/achebe.svg"
+                alt=""
+                className="cursor-pointer w-[125px] h-[30px] lg:w-[202px] lg:h-[48px] mb-[50px]"
+                onClick={() => router.push("/")}
+            />
             <nav className="mb-[50px] flex flex-col gap-10" >
-                <Link href="/" className={`${pathName == "/" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5 w-fit font-medium`} onClick={()=> isSidebarOpen && setIsSidebarOpen(false)} > HOME </Link>
-                <Link href="/about" className={`${pathName == "/about" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5 w-fit font-medium`} onClick={()=> isSidebarOpen && setIsSidebarOpen(false)} >ABOUT THE PROJECT</Link>
-                <Link href="/open-source" className={`${pathName == "/open-source" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5 w-fit font-medium`} onClick={()=> isSidebarOpen && setIsSidebarOpen(false)} >OPEN SOURCE</Link>                
+                <Link href="/" className={`${pathName == "/" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5 w-fit font-medium text-lg`} onClick={()=> isSidebarOpen && setIsSidebarOpen(false)} > HOME </Link>
+                <Link href="/about" className={`${pathName == "/about" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5 w-fit font-medium text-lg`} onClick={()=> isSidebarOpen && setIsSidebarOpen(false)} >ABOUT THE PROJECT</Link>
+                <Link href="/open-source" className={`${pathName == "/open-source" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5 w-fit font-medium text-lg`} onClick={()=> isSidebarOpen && setIsSidebarOpen(false)} >OPEN SOURCE</Link>                
             </nav>
             <PrimaryButton
                 onClick={() => router.push("/ask")}

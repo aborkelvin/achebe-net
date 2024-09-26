@@ -11,12 +11,18 @@ export default function Header({toggleSidebar}:{toggleSidebar:()=>void}) {
     const pathName = usePathname();
     return (
         <div className={`font-medium flex justify-between items-center py-8 lg:py-5 px-4 md:px-7 lg:px-12 xl:px-[100px] text-brand-white bg-[#120F1133] `} >
-            <h1
+            {/* <h1
                 className={`text-2xl lg:text-[38px] font-bold cursor-pointer`}
                 onClick={() => router.push("/")}
             >
                 achebe.net
-            </h1>
+            </h1> */}
+            <img
+                src="/images/achebe.svg"
+                alt=""
+                className="cursor-pointer w-[125px] h-[30px] lg:w-[202px] lg:h-[48px]"
+                onClick={() => router.push("/")}
+            />
             <nav className="hidden lg:flex lg:items-center gap-10" >
                 <Link href="/" className={`${pathName == "/" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5`} > HOME </Link>
                 <Link href="/about" className={`${pathName == "/about" ? "border-b-2 border-b-[#60132C]" : ""}  p-0.5`} >ABOUT THE PROJECT</Link>

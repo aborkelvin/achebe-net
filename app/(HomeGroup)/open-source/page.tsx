@@ -27,11 +27,11 @@ export default function OpenSource() {
                 onClick={() => isSidebarOpen && setIsSidebarOpen(false)}
             >
                 {/* HERO SECTION */}
-                <section className="bg-[#120F11] bg-hero-image bg-no-repeat bg-cover bg-center min-h-[380vh] lg:min-h-screen relative pb-5 overflow-hidden">
+                <section className="bg-[#120F11] bg-hero-image bg-no-repeat bg-cover bg-center min-h-[100vh] lg:min-h-screen relative pb-5 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                     <div className="relative z-10">
                         <Header toggleSidebar={toggleSidebar} />
-                        <div className="relative py-2.5 lg:py-[80px] px-4 md:px-7 lg:px-12 xl:px-[100px]">
+                        <div className="relative py-2.5 lg:py-[80px] px-4 md:px-7 lg:px-12 xl:px-[100px] min-h-[280vh] lg:min-h-screen">
                             <h1 className='text-3xl xl:text-4xl font-semibold mb-[22px]' >
                                 BOOKS
                             </h1>
@@ -54,7 +54,7 @@ export default function OpenSource() {
                                         Indigenous communities can use their <br /> voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                     </p>
                                     <PrimaryButton
-                                        name='CONTRIBUTE'
+                                        name='COMING SOON'
                                         className='px-[53px] py-4 font-bold'
                                     />
                                 </div>
@@ -76,7 +76,7 @@ export default function OpenSource() {
                                         Indigenous communities can use their <br /> voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                     </p>
                                     <PrimaryButton
-                                        name='CONTRIBUTE'
+                                        name='COMING SOON'
                                         className='px-[53px] py-4 font-bold'
                                     />
                                 </div>
@@ -98,7 +98,7 @@ export default function OpenSource() {
                                         Indigenous communities can use their <br /> voting rights to decide which stories are <br /> shared publicly and how they are presented.
                                     </p>
                                     <PrimaryButton
-                                        name='CONTRIBUTE'
+                                        name='COMING SOON'
                                         className='px-[53px] py-4 font-bold'
                                     />
                                 </div>
@@ -123,8 +123,8 @@ export default function OpenSource() {
                                         Chinua Achebe was known for giving voice to the African experience in the context of colonialism through his literature works. What is the similarity between this and a centralized economy?
                                     </p>
                                     <PrimaryButton
-                                        name="CONTRIBUTE"
-                                        className='px-11 lg:px-12 py-3 lg:py-4 font-bold z-10'
+                                        name="COMING SOON"
+                                        className='px-11 lg:px-12 py-3 lg:py-4 font-bold z-10 relative'
                                     />
                                     <img
                                         src={'/images/image11.png'}
@@ -143,8 +143,8 @@ export default function OpenSource() {
                                         We can preserve our cultural stories and histories in a way that resists centralization, manipulation, maintains originality and empower the decentralized world.
                                     </p>
                                     <PrimaryButton
-                                        name="CONTRIBUTE"
-                                        className='px-11 lg:px-12 py-3 lg:py-4 font-bold'
+                                        name="COMING SOON"
+                                        className='px-11 lg:px-12 py-3 lg:py-4 font-bold z-10 relative'
                                     />
                                     <img
                                         src={'/images/image10.png'}

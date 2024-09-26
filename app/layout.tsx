@@ -7,7 +7,7 @@ const oxanium = Oxanium({subsets:["latin-ext"]})
 
 export const metadata: Metadata = {
   title: 'Achebe.net',
-  description: 'Achebe.net is a platform that provides solutions to hackquest challenges',
+  description: 'Interact with Achebe in a more personal way',
 }
 
 export default function RootLayout({

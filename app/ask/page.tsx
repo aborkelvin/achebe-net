@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState,useEffect } from "react";
+import { use, useState,useEffect, useRef } from "react";
 import Footer from "../(HomeGroup)/_components/footer";
 import PrimaryButton from "../_components/PrimaryButton/PrimaryButton";
 import { Oxanium } from "next/font/google";
@@ -9,16 +9,30 @@ import { TextEffect } from "../_components/motions";
 import Loadingspinner from "../_components/loadingSpinner";
 import { useRouter } from "next/navigation";
 
+type UserQuestionAnswer = {
+    question: string;
+    answer: string;
+}
+
 export default function Ask() {
-
-
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-    const [userMessage, setUserMessage] = useState("");
-    const [userQuestion, setUserQuestion] = useState("");
-    const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
+
+
+    const [userMessage, setUserMessage] = useState("");
+    //const [userQuestion, setUserQuestion] = useState("");
+    const [response, setResponse] = useState("");
+    const [userQuestionAnswer, setUserQuestionAnswer] = useState<UserQuestionAnswer[]>([]);
+    
+    
+    const messageEndRef = useRef<null | HTMLDivElement>(null);
+    // Automatically scroll to bottom when new content is added
+    useEffect(() => {
+        messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [userQuestionAnswer]);
 
     const sendMessageToGaianet = async (userMessage: string) => {
         setLoading(true);
@@ -51,10 +65,14 @@ export default function Ask() {
 
             if (response.ok) {
                 setResponse("");   
-                setUserQuestion(userMessage);
-
+                setUserMessage("");
                 const responseData = await response.json();
                 //console.log(responseData)
+                
+                // Keep history of question and answer
+                setUserQuestionAnswer([...userQuestionAnswer, { question: userMessage, answer: responseData.choices[0].message.content }]);
+                
+                
                 console.log(responseData.choices[0].message.content)
                 setResponse(responseData.choices[0].message.content);
             } else {
@@ -67,56 +85,6 @@ export default function Ask() {
             setLoading(false);
         }
     };        
-
-    useEffect(() => {
-        const sendMessageToGaianet = async (userMessage: string) => {
-            const url = "https://gemma.us.gaianet.network/v1/chat/completions";
-            const headers = {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            };
-
-            const data = {
-                "messages": [
-                    {
-                        "role": "assistant",
-                        "content": `You are a virtual twin of Chinua Achebe and you respond to questions relating to him. 
-                    Also, you speak for him in all cases, using references from his books and history to give the likeliest 
-                    answer that he might have given. You are brief, avoiding long responses in most cases. 
-                    You are very intelligent and humble. You always acknowledge the love from your wife and children. 
-                    You are Chinua Achebe's virtual twin.`
-                    },
-                    { "role": "user", "content": userMessage }
-                ]
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: headers,
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    const responseData = await response.json();
-                    console.log(responseData)
-                    //console.log(responseData.choices[0].message.content)
-                } else {
-                    throw new Error(`Error: ${response.status}`);
-                }
-            } catch (error: any) {
-                console.error(error.message);
-                return "An error occurred while processing your request.";
-            }
-        };
-
-        // Usage:
-        const userMessage = "I want to know why your book, waters are purple, is such a trash";
-        /* sendMessageToGaianet(userMessage).then((response) => {
-            console.log(response); // This will log the API response
-        }); */
-        //sendMessageToGaianet(userMessage);
-    }, []);
 
 
     return (
@@ -162,19 +130,7 @@ export default function Ask() {
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-[#120F11]/90 to-[#120F11]/90 z-0"></div>
                 <div className="relative h-full w-full ">                        
-                    <header className='p-4 py-6 lg:p-5 xl:p-6 flex gap-10 items-center justify-between' >
-                        {/* <h1
-                            className='text-2xl lg:text-5xl xl:text-[52px] text-transparent bg-clip-text'
-                            style={{
-                                backgroundImage: 'linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)',
-                                backgroundSize: '100%',
-                                backgroundClip: 'text',
-                                WebkitBackgroundClip: 'text'
-                            }}
-                            onClick={() => router.push('/')}
-                        >
-                            achebe.net
-                        </h1>  */}         
+                    <header className='p-4 py-6 lg:p-5 xl:p-6 flex gap-10 items-center justify-between' >    
                         <img
                             src="/images/achebe2.svg"
                             alt=""
@@ -197,33 +153,76 @@ export default function Ask() {
                             HEY, YOU ARE WELCOME TO ASK ACHEBE.NET
                         </p>
                     </div>
-                    <div className="py-6 p-4 lg:p-6 relative w-full" >
-                        {
-                            response === "" ?
-                            <h3 className="leading-[70px] 2xl:leading-[120px] text-brand-white font-medium text-5xl 2xl:text-8xl lg:max-w-[80%]" >
-                                HOW CAN <br className="hidden lg:block" />
-                                <span className="text-transparent bg-clip-text"
-                                    style={{
-                                        backgroundImage: 'linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)',
-                                        backgroundSize: '100%',
-                                        backgroundClip: 'text',
-                                        WebkitBackgroundClip: 'text'
-                                    }}
-                                >
-                                    {' '} ACHEBE.NET {' '}
-                                </span>
-                                BE <br className="hidden xl:block" /> OF HELP TODAY?
-                            </h3>
-                            :   
-                            <div className="text-brand-white text-sm lg:text-base" >
-                                <p className="text-right bg-black w-fit ml-auto lg:mr-10 mb-4 p-2 lg:p-3 rounded " >
-                                    {userQuestion}?
-                                </p>                                
-                                <TextEffect className="font-medium px-3" per='word' as='h3' preset='slide'>
-                                    {response}
-                                </TextEffect>
-                            </div>
-                        }                      
+                    <div className="py-6 p-4 lg:p-6 relative w-full overflow-hidden" >
+                        <div className="overflow-y-auto" 
+                            style={{ 
+                                maxHeight: 'calc(80vh - 150px)', // Adjust this value based on the height of the input div
+                            }}
+                        >
+                            {/* {
+                                response === "" ?
+                                <h3 className="leading-[70px] 2xl:leading-[120px] text-brand-white font-medium text-5xl 2xl:text-8xl lg:max-w-[80%]" >
+                                    HOW CAN <br className="hidden lg:block" />
+                                    <span className="text-transparent bg-clip-text"
+                                        style={{
+                                            backgroundImage: 'linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)',
+                                            backgroundSize: '100%',
+                                            backgroundClip: 'text',
+                                            WebkitBackgroundClip: 'text'
+                                        }}
+                                    >
+                                        {' '} ACHEBE.NET {' '}
+                                    </span>
+                                    BE <br className="hidden xl:block" /> OF HELP TODAY?
+                                </h3>
+                                :
+                                <div className="text-brand-white text-sm lg:text-base" >
+                                    <p className="text-right bg-black w-fit ml-auto lg:mr-10 mb-4 p-2 lg:p-3 rounded " >
+                                        {userQuestion}?
+                                    </p>
+                                    <TextEffect className="font-medium px-3" per='word' as='h3' preset='slide'>
+                                        {response}
+                                    </TextEffect>
+                                </div>
+                            } */}
+                            {
+                                // Display the user's question and the response from Gaianet using the userQuestionAnswer state
+                                userQuestionAnswer.length == 0 ? 
+                                <h3 className="leading-[70px] 2xl:leading-[120px] text-brand-white font-medium text-5xl 2xl:text-8xl lg:max-w-[80%]" >
+                                    HOW CAN <br className="hidden lg:block" />
+                                    <span className="text-transparent bg-clip-text"
+                                        style={{
+                                            backgroundImage: 'linear-gradient(90deg, #FFF1FA -1.54%, #60132C 126.39%)',
+                                            backgroundSize: '100%',
+                                            backgroundClip: 'text',
+                                            WebkitBackgroundClip: 'text'
+                                        }}
+                                    >
+                                        {' '} ACHEBE.NET {' '}
+                                    </span>
+                                    BE <br className="hidden xl:block" /> OF HELP TODAY?
+                                </h3>
+                                : 
+                                <div className="flex flex-col gap-10 lg:gap-12">
+                                    {
+                                    
+                                        userQuestionAnswer.map((item, index) => (
+                                            <div key={index} className="text-brand-white text-sm lg:text-base" >
+                                                <p className="text-right bg-black w-fit ml-auto lg:mr-10 mb-2 lg:mb-4 p-2 lg:p-3 rounded " >
+                                                    {item.question}?
+                                                </p>
+                                                <TextEffect className="font-medium px-3" per='word' as='h3' preset='slide'>
+                                                    {item.answer}
+                                                </TextEffect>
+                                            </div>
+                                    ))}
+                                </div>
+                            }
+                            
+                            {/* Reference for scrolling to the bottom */}
+                            <div ref={messageEndRef}></div>
+
+                        </div>                      
                     </div>                    
                     <div className="absolute bottom-[40px] left-4 lg:left-6 right-4 lg:right-6" >
                         <div className="relative h-fit">
